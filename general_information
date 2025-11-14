@@ -1,0 +1,173 @@
+
+MyCent
+
+features
+
+user (access)
+- access to application
+- shall be using google account authentication
+- data:
+    - id: number
+    - subscription_id: number
+    - auth_id: string
+    - name: string
+    - email: string
+    - profile_picture: string (url)
+    - created_at: datetimeoffset
+    - updated_at: datetimeoffset
+    - is_active: boolean
+subscription
+- handle access levels
+    - to wrapper all the accounts, its dependencies
+    - able to be shared with other users
+- data:
+    - id: number
+    - subscription_id: number
+    - name: string
+    - type (free, premium, family): string
+    - created_at: datetimeoffset
+    - updated_at: datetimeoffset
+    - is_active: boolean
+currency
+- handle several currencies
+- handle name, code and symbol
+- data:
+    - id: number
+    - subscription_id: number
+    - code: string // e.g. 'MXN'
+    - name: string
+    - symbol: string
+    - created_at: datetimeoffset
+    - updated_at: datetimeoffset
+tags
+- can create multiple tags
+- can assign multiple tags to transactions
+- data:
+    - id: number
+    - subscription_id: number
+    - code: string // e.g. 'MXN'
+    - name: string
+    - symbol: string
+    - created_at: datetimeoffset
+    - updated_at: datetimeoffset
+    - is_active: boolean
+accounts
+- can create multiple account
+- can group accounts by 'personal', 'business', etc.
+- can type accounts by 'savings', 'credit card', 'cash', 'investment',
+- can has icons for accounts
+- can has color
+- can has balance
+- data:
+    - id: number
+    - subscription_id: number
+    - currency_id: number
+    - name: string
+    - group: string // e.g. 'personal', 'business'
+    - type: string // e.g. 'savings', 'credit card', 'cash', 'investment'
+    - balance: number
+    - is_active: boolean
+    - created_at: datetimeoffset
+    - updated_at: datetimeoffset
+transaction
+- data:
+    - id: number
+    - subscription_id: number
+    - account_id: number
+    - currency_id: number
+    - title: string
+    - amount: number
+    - type: string // e.g. 'income', 'expense', 'transfer'
+    - date: datetimeoffset
+    - status: string // e.g. 'reconciled', 'cleared', 'avoid', 'none'
+    - description: string
+    - created_at: datetimeoffset
+    - updated_at: datetimeoffset
+    - tags: array of tag ids
+recurrent payments
+- data:
+    - id: number
+    - subscription_id: number
+    - account_id: number
+    - currency_id: number
+    - amount: number
+    - type: string // e.g. 'income', 'expense', 'transfer'
+    - start_date: datetimeoffset
+    - end_date: datetimeoffset
+    - frequency: string // e.g. 'weekly', 'monthly', 'yearly'
+    - description: string
+    - created_at: datetimeoffset
+    - updated_at: datetimeoffset
+    - tags: array of tag ids
+
+budgets
+- data:
+    - id: number
+    - subscription_id: number
+    - currency_id: number
+    - amount: number
+    - period: string // e.g. 'monthly', 'yearly'
+    - description: string
+    - created_at: datetimeoffset
+    - updated_at: datetimeoffset
+    - tags: array of tag ids
+    - is_active: boolean
+
+reports
+- generate reports based on transactions, accounts, budgets, tags
+- types of reports:
+    - income vs expense
+    - spending by category
+    - account balances
+    - budget vs actual
+    - trends over time
+    - spending by tag
+    - investment performance
+- export reports to PDF, CSV
+- share reports via email, social media
+- data:
+    - id: number
+    - subscription_id: number
+    - type: string // e.g. 'income vs expense', 'spending by category'
+    - parameters: json
+    - created_at: datetimeoffset
+    - updated_at: datetimeoffset
+
+
+technology stack
+- frontend: React Native with Expo
+- database: SQLite
+- state management: Redux or Context API
+- offline support: SQLite for local storage and synchronization to other users with superbase when online
+- backend: Supabase (for authentication, data synchronization, cloud functions)
+- authentication: Google OAuth
+- deployment: Expo Application Services (EAS) for building and deploying mobile apps
+- testing: Jest and React Native Testing Library for unit and integration tests
+
+non functional requirements
+- performance: app should load within 3 seconds, smooth navigation
+- security: data encryption, secure authentication
+- scalability: design database and architecture to handle growing user base
+- usability: intuitive UI/UX design, easy navigation
+- maintainability: clean code, modular architecture, comprehensive documentation
+- compatibility: support for both iOS and Android devices
+- accessibility: comply with accessibility standards for users with disabilities
+- localization: support for multiple languages and regional settings
+- support and maintenance: regular updates, bug fixes, user support channels
+- support for dark mode and light mode themes
+
+screens
+- login screen
+- registration screen
+- dashboard screen
+- accounts screen
+- transactions screen
+- budgets screen
+- reports screen
+- settings screen
+- profile screen
+- tag management screen
+- recurrent payments screen
+- currency management screen
+- subscription management screen
+
